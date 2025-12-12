@@ -1,0 +1,2716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aravali International School - Ignite Sports & Cultural Day 2025</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: #0f172a;       /* Dark blue/black */
+            --secondary-color: #7c3aed;     /* Purple */
+            --accent-color: #06b6d4;        /* Cyan */
+            --highlight-color: #f59e0b;     /* Amber */
+            --light-color: #f8fafc;
+            --dark-color: #020617;
+            --gray-color: #334155;
+            --border-radius: 10px;
+            --box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+            --sports-color: #3b82f6;        /* Blue for Sports */
+            --cultural-color: #10b981;      /* Green for Cultural */
+        }
+
+        body {
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Music Controls - GUARANTEED TO WORK */
+        .music-controls {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            z-index: 1001;
+            background: rgba(15, 23, 42, 0.95);
+            border-radius: 50px;
+            padding: 15px 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--accent-color);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            animation: slideInLeft 0.5s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .music-controls:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.4);
+        }
+
+        .music-toggle-btn {
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+        }
+
+        .music-toggle-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(124, 58, 237, 0.7);
+        }
+
+        .music-toggle-btn.playing {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(6, 182, 212, 0.8); }
+            100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.5); }
+        }
+
+        .music-info {
+            color: white;
+            font-size: 0.9rem;
+            display: block;
+            min-width: 180px;
+        }
+
+        .music-info h4 {
+            color: var(--accent-color);
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .music-info p {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .volume-control i {
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+
+        .volume-slider {
+            width: 100px;
+            height: 5px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+        }
+
+        .volume-slider::-moz-range-thumb {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Music Status Message */
+        .music-status {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 27, 75, 0.9));
+            padding: 15px 25px;
+            border-radius: var(--border-radius);
+            border: 2px solid var(--accent-color);
+            color: white;
+            font-size: 1rem;
+            z-index: 1000;
+            animation: slideInRight 0.5s ease-out;
+            display: none;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            max-width: 300px;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .music-status.success {
+            border-color: #10b981;
+        }
+
+        .music-status.error {
+            border-color: #ef4444;
+        }
+
+        /* Header Styles - FIXED */
+        .main-header {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .logo-placeholder {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--highlight-color);
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+            flex-shrink: 0;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, var(--accent-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            letter-spacing: 1px;
+        }
+
+        /* Fixed Navigation Menu */
+        .nav-menu {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .nav-menu ul {
+            display: flex;
+            list-style: none;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-color);
+            background-color: rgba(124, 58, 237, 0.1);
+        }
+
+        /* Hero Section with Parallax */
+        .hero-section {
+            background: 
+                linear-gradient(rgba(2, 6, 23, 0.9), rgba(15, 23, 42, 0.9)),
+                url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(124, 58, 237, 0.2) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 20%, rgba(6, 182, 212, 0.15) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(-20px) translateX(10px); }
+            50% { transform: translateY(10px) translateX(-10px); }
+            75% { transform: translateY(-10px) translateX(-5px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+            background: linear-gradient(to right, white, var(--accent-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 0 20px rgba(6, 182, 212, 0.3); }
+            100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5), 0 0 40px rgba(6, 182, 212, 0.5); }
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #cbd5e1;
+        }
+
+        /* Live Now Badge */
+        .live-now-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+            margin: 3rem 0;
+            animation: slideIn 1s ease-out 0.5s both;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .live-now-badge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 0 25px rgba(239, 68, 68, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .live-now-badge .blink-dot {
+            width: 12px;
+            height: 12px;
+            background-color: white;
+            border-radius: 50%;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Current Event Statistics - CONSTANT VALUES */
+        .current-event-stats {
+            background: rgba(15, 23, 42, 0.7);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            transition: all 0.3s;
+            animation: fadeIn 1s ease-out 0.7s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .current-event-stats:hover {
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .current-event-stats h3 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .current-time {
+            color: var(--highlight-color);
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            animation: timeGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes timeGlow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .current-event-stats p {
+            color: #cbd5e1;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .event-details {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .event-detail-item {
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .event-detail-value {
+            color: var(--highlight-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            transition: transform 0.3s;
+        }
+
+        .event-detail-label {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Houses Display */
+        .houses-display {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(124, 58, 237, 0.2);
+        }
+
+        .houses-display h4 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .houses-badges {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 0.5rem;
+        }
+
+        .house-badge {
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            min-width: 120px;
+            justify-content: center;
+        }
+
+        .house-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .house-badge-dot {
+            width: 10px;
+            height: 10px;
+            background-color: white;
+            border-radius: 50%;
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+
+        .ruby-badge {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+        }
+
+        .sapphire-badge {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+        }
+
+        .emerald-badge {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        .topaz-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        /* Section Styling */
+        .section {
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, var(--accent-color), var(--secondary-color));
+            border-radius: 2px;
+            animation: lineExpand 2s ease-in-out infinite;
+        }
+
+        @keyframes lineExpand {
+            0%, 100% { width: 100px; }
+            50% { width: 150px; }
+        }
+
+        /* Highlights Section */
+        .highlights-section {
+            background: linear-gradient(135deg, rgba(2, 6, 23, 0.9), rgba(15, 23, 42, 0.9));
+        }
+
+        .highlights-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight-card {
+            background: linear-gradient(145deg, rgba(30, 27, 75, 0.7), rgba(15, 23, 42, 0.9));
+            border-radius: var(--border-radius);
+            padding: 2.5rem 2rem;
+            box-shadow: var(--box-shadow);
+            text-align: center;
+            transition: all 0.4s;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--accent-color), var(--secondary-color));
+            transform: translateZ(-1px);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+            border-color: var(--accent-color);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.2);
+        }
+
+        .highlight-card i {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to bottom, var(--accent-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .highlight-card h3 {
+            color: #e2e8f0;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .highlight-card .value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            margin: 1rem 0;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .highlight-card .description {
+            color: #94a3b8;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Sports & Cultural Spirit Events */
+        .events-section {
+            background: linear-gradient(135deg, rgba(2, 6, 23, 0.9), rgba(30, 27, 75, 0.9));
+        }
+
+        .spirit-category {
+            margin-bottom: 5rem;
+        }
+
+        .spirit-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .category-header h3 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            padding-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .category-header h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        .sports-spirit .category-header h3::after {
+            background: linear-gradient(to right, var(--sports-color), #1d4ed8);
+        }
+
+        .cultural-spirit .category-header h3::after {
+            background: linear-gradient(to right, var(--cultural-color), #059669);
+        }
+
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .event-card {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.8), rgba(30, 27, 75, 0.9));
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            transition: all 0.3s;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            text-align: center;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+        }
+
+        .sports-spirit .event-card {
+            border-left: 5px solid var(--sports-color);
+        }
+
+        .cultural-spirit .event-card {
+            border-left: 5px solid var(--cultural-color);
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px) rotateY(10deg);
+            box-shadow: 0 15px 30px rgba(6, 182, 212, 0.2);
+        }
+
+        .sports-spirit .event-card:hover {
+            border-color: var(--sports-color);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+        }
+
+        .cultural-spirit .event-card:hover {
+            border-color: var(--cultural-color);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.2);
+        }
+
+        .event-card h3 {
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .sports-spirit .event-card h3 {
+            color: var(--sports-color);
+        }
+
+        .cultural-spirit .event-card h3 {
+            color: var(--cultural-color);
+        }
+
+        .event-card p {
+            color: #cbd5e1;
+            margin-bottom: 0.8rem;
+            line-height: 1.7;
+            font-size: 1.2rem;
+        }
+
+        .event-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        .sports-spirit .event-icon {
+            color: var(--sports-color);
+        }
+
+        .cultural-spirit .event-icon {
+            color: var(--cultural-color);
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Houses Section */
+        .houses-section {
+            background: linear-gradient(135deg, rgba(30, 27, 75, 0.9), rgba(15, 23, 42, 0.9));
+        }
+
+        .houses-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .houses-card {
+            background: linear-gradient(145deg, rgba(15, 23, 42, 0.8), rgba(30, 27, 75, 0.9));
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--box-shadow);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            animation: fadeInScale 0.5s ease-out;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .houses-card h3 {
+            color: white;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-size: 1.8rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .houses-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .house-item {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+            transition: all 0.3s;
+        }
+
+        .house-item:hover {
+            background-color: rgba(124, 58, 237, 0.05);
+            border-radius: 8px;
+            transform: translateX(10px) scale(1.05);
+        }
+
+        .house-item:last-child {
+            border-bottom: none;
+        }
+
+        .house-color {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            margin-right: 20px;
+            box-shadow: 0 0 15px currentColor;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: colorPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes colorPulse {
+            0%, 100% { box-shadow: 0 0 15px currentColor; }
+            50% { box-shadow: 0 0 25px currentColor; }
+        }
+
+        .house-name {
+            font-weight: 700;
+            color: #e2e8f0;
+            font-size: 1.4rem;
+            flex: 1;
+        }
+
+        /* Color specific styles for houses */
+        .ruby-house .house-color {
+            background-color: #dc2626;
+            color: #dc2626;
+        }
+
+        .sapphire-house .house-color {
+            background-color: #2563eb;
+            color: #2563eb;
+        }
+
+        .emerald-house .house-color {
+            background-color: #10b981;
+            color: #10b981;
+        }
+
+        .topaz-house .house-color {
+            background-color: #f59e0b;
+            color: #f59e0b;
+        }
+
+        /* Space Travel Gallery Section */
+        .gallery-section {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(2, 6, 23, 0.9));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.1) 0%, transparent 50%),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.6"/></svg>') repeat;
+            animation: twinkle 20s infinite linear;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+        }
+
+        .gallery-container {
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-gallery-image {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            margin: 0 auto;
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            border: 3px solid rgba(6, 182, 212, 0.3);
+        }
+
+        .main-gallery-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .main-gallery-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .main-gallery-image::after {
+            content: 'DOUBLE CLICK TO START SPACE TRAVEL';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 15px;
+        }
+
+        .main-gallery-image:hover::after {
+            opacity: 1;
+        }
+
+        .space-travel-btn {
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+            transition: all 0.3s;
+            z-index: 10;
+        }
+
+        .space-travel-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.6);
+        }
+
+        .space-travel-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .thumbnail {
+            width: 100px;
+            height: 70px;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .thumbnail:hover {
+            opacity: 1;
+            transform: translateY(-5px);
+            border-color: var(--accent-color);
+        }
+
+        .thumbnail.active {
+            opacity: 1;
+            border-color: var(--highlight-color);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .image-title {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 2rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            min-height: 50px;
+            padding: 0 20px;
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+        }
+
+        .gallery-instructions {
+            text-align: center;
+            margin-top: 25px;
+            color: #94a3b8;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+        }
+
+        /* Space Travel Animation Elements */
+        .space-travel-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 1000;
+            display: none;
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="1" fill="white" opacity="0.8"/></svg>') repeat;
+            animation: starMove 50s linear infinite;
+        }
+
+        @keyframes starMove {
+            from { transform: translateY(0); }
+            to { transform: translateY(-1000px); }
+        }
+
+        .travel-image {
+            position: absolute;
+            width: 300px;
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+            transform: translateZ(0);
+            transition: transform 2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .travel-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .travel-image.split {
+            animation: splitAndZoom 3s forwards;
+        }
+
+        @keyframes splitAndZoom {
+            0% {
+                transform: scale(1) translateZ(0);
+                opacity: 1;
+            }
+            20% {
+                transform: scale(1.5) translateZ(100px);
+                opacity: 0.8;
+            }
+            40% {
+                transform: scale(2) translateZ(500px);
+                opacity: 0.6;
+            }
+            60% {
+                transform: scale(2.5) translateZ(1000px);
+                opacity: 0.4;
+            }
+            80% {
+                transform: scale(3) translateZ(1500px);
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(3.5) translateZ(2000px);
+                opacity: 0;
+            }
+        }
+
+        .travel-image.approach-left {
+            animation: approachFromLeft 4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+
+        .travel-image.approach-right {
+            animation: approachFromRight 4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+
+        @keyframes approachFromLeft {
+            0% {
+                transform: translateX(-1000px) translateZ(-1000px) rotateY(90deg);
+                opacity: 0;
+            }
+            20% {
+                transform: translateX(-500px) translateZ(-500px) rotateY(45deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateX(0) translateZ(0) rotateY(0);
+                opacity: 1;
+            }
+            80% {
+                transform: translateX(500px) translateZ(500px) rotateY(-45deg);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateX(1000px) translateZ(1000px) rotateY(-90deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes approachFromRight {
+            0% {
+                transform: translateX(1000px) translateZ(-1000px) rotateY(-90deg);
+                opacity: 0;
+            }
+            20% {
+                transform: translateX(500px) translateZ(-500px) rotateY(-45deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: translateX(0) translateZ(0) rotateY(0);
+                opacity: 1;
+            }
+            80% {
+                transform: translateX(-500px) translateZ(500px) rotateY(45deg);
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateX(-1000px) translateZ(1000px) rotateY(90deg);
+                opacity: 0;
+            }
+        }
+
+        .exit-travel-btn {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            z-index: 1001;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.6);
+            transition: all 0.3s;
+        }
+
+        .exit-travel-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 40px rgba(239, 68, 68, 0.8);
+        }
+
+        .travel-progress {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+            z-index: 1001;
+        }
+
+        .travel-progress-bar {
+            height: 100%;
+            background: linear-gradient(to right, var(--accent-color), var(--secondary-color));
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        .main-footer {
+            background: linear-gradient(135deg, #0f172a, #020617);
+            color: white;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid rgba(124, 58, 237, 0.3);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .footer-logo-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, var(--accent-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .footer-links h4, 
+        .footer-contact h4 {
+            font-size: 1.4rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h4::after,
+        .footer-contact h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-color), var(--secondary-color));
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+            transform: translateX(5px);
+        }
+
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #cbd5b8;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--secondary-color), #4f46e5);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .social-icons a:hover {
+            background: linear-gradient(135deg, var(--accent-color), var(--secondary-color));
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(124, 58, 237, 0.2);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .logo-section {
+                min-width: 100%;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .nav-menu {
+                min-width: 100%;
+                justify-content: center;
+            }
+
+            .nav-menu ul {
+                justify-content: center;
+            }
+
+            .hero-content h2 {
+                font-size: 2.8rem;
+            }
+
+            .live-now-container {
+                margin: 2rem 0;
+            }
+
+            .main-gallery-image {
+                height: 400px;
+            }
+
+            .music-controls {
+                bottom: 20px;
+                left: 20px;
+            }
+
+            .music-status {
+                top: 80px;
+                right: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu ul {
+                gap: 10px;
+            }
+
+            .nav-menu a {
+                font-size: 0.9rem;
+                padding: 6px 10px;
+            }
+
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 3.5rem 0;
+            }
+
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+
+            .highlight-card .value {
+                font-size: 2.2rem;
+            }
+
+            .houses-container {
+                grid-template-columns: 1fr;
+            }
+
+            .main-gallery-image {
+                height: 300px;
+            }
+
+            .space-travel-btn {
+                position: relative;
+                right: auto;
+                top: auto;
+                margin: 20px auto;
+                display: block;
+            }
+
+            .travel-image {
+                width: 200px;
+                height: 150px;
+            }
+
+            .houses-badges {
+                gap: 10px;
+            }
+
+            .house-badge {
+                min-width: 110px;
+                padding: 6px 12px;
+                font-size: 0.9rem;
+            }
+
+            .music-controls {
+                padding: 12px;
+            }
+
+            .music-toggle-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .music-info {
+                min-width: 150px;
+                font-size: 0.8rem;
+            }
+
+            .music-status {
+                max-width: 250px;
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+
+            .live-now-badge {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+
+            .house-item {
+                padding: 1.2rem;
+            }
+
+            .house-name {
+                font-size: 1.2rem;
+            }
+
+            .house-color {
+                width: 28px;
+                height: 28px;
+                margin-right: 15px;
+            }
+
+            .main-gallery-image {
+                height: 250px;
+            }
+
+            .main-gallery-image::after {
+                font-size: 1.1rem;
+            }
+
+            .space-travel-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+
+            .thumbnail {
+                width: 80px;
+                height: 56px;
+            }
+
+            .image-title {
+                font-size: 1.4rem;
+            }
+
+            .travel-image {
+                width: 150px;
+                height: 100px;
+            }
+
+            .event-detail-item {
+                min-width: 100px;
+            }
+
+            .houses-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .house-badge {
+                width: 80%;
+            }
+
+            .music-controls {
+                bottom: 15px;
+                left: 15px;
+                padding: 10px;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .music-toggle-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1rem;
+            }
+
+            .music-info {
+                min-width: 120px;
+                font-size: 0.8rem;
+            }
+
+            .volume-slider {
+                width: 80px;
+            }
+
+            .music-status {
+                max-width: 200px;
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--accent-color), var(--secondary-color));
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, var(--secondary-color), var(--accent-color));
+        }
+    </style>
+</head>
+<body>
+    <!-- Music Status Messages -->
+    <div class="music-status" id="musicStatus"></div>
+
+    <!-- Background Music Audio Element -->
+    <!-- REPLACE THIS WITH YOUR ACTUAL MUSIC FILE URL -->
+    <audio id="background-music" loop preload="auto">
+        <!-- 
+        IMPORTANT: Replace this URL with your actual 5-hour music file
+        Example: <source src="https://your-server.com/music/5-hour-epic-music.mp3" type="audio/mpeg">
+        
+        If your music doesn't work, try this test URL first:
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        -->
+        <source src="YOUR_MUSIC_FILE_URL_HERE.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Space Travel Music -->
+    <audio id="space-audio" preload="auto">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-epic-cinematic-trailer-399.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Music Controls -->
+    <div class="music-controls">
+        <button class="music-toggle-btn" id="musicToggleBtn">
+            <i class="fas fa-play"></i>
+        </button>
+        <div class="music-info">
+            <h4>Event Background Music</h4>
+            <p>5-Hour Epic Cinematic Loop</p>
+            <div class="volume-control">
+                <i class="fas fa-volume-down"></i>
+                <input type="range" min="0" max="1" step="0.1" value="0.7" class="volume-slider" id="volumeSlider">
+                <i class="fas fa-volume-up"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header class="main-header">
+        <div class="container header-content">
+            <div class="logo-section">
+                <!-- Logo Image -->
+                <div class="logo-placeholder">
+                    <img src="IMG-20251204-WA0002-removebg-preview.png" alt="Aravali International School" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;">
+                </div>
+                <div class="logo-text">
+                    <h1>ARAVALI INTERNATIONAL SCHOOL</h1>
+                    <p>IGNITE Sports & Cultural Day 2025</p>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#highlights">Highlights</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#houses">Houses</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+        <div class="container hero-content">
+            <h2>ARAVALI INTERNATIONAL SCHOOL IGNITE SPORTS & CULTURAL DAY 2025</h2>
+            <p>Celebrating 25 years of excellence in sports and culture! Our school's premier event showcasing emerging talent from all houses in both athletic competitions and cultural performances.</p>
+
+            <div class="live-now-container">
+                <div class="live-now-badge">
+                    <div class="blink-dot"></div>
+                    <span>LIVE NOW - EVENTS IN PROGRESS</span>
+                </div>
+
+                <!-- Event Statistics with CONSTANT VALUES -->
+                <div class="current-event-stats">
+                    <h3>EVENT STATISTICS</h3>
+                    <div class="current-time" id="currentTime"></div>
+                    <p>Senior Boys 4x100m Relay Finals & Cultural Dance Competition - Both events happening simultaneously!</p>
+                    
+                    <div class="event-details">
+                        <div class="event-detail-item">
+                            <div class="event-detail-value">8</div>
+                            <div class="event-detail-label">Events Live</div>
+                        </div>
+                        <div class="event-detail-item">
+                            <div class="event-detail-value">0</div>
+                            <div class="event-detail-label">Awards Given</div>
+                        </div>
+                        <div class="event-detail-item">
+                            <div class="event-detail-value">4</div>
+                            <div class="event-detail-label">Competing Houses</div>
+                        </div>
+                    </div>
+                    
+                    <div class="houses-display">
+                        <h4>COMPETING HOUSES:</h4>
+                        <div class="houses-badges">
+                            <div class="house-badge ruby-badge">
+                                <div class="house-badge-dot"></div>
+                                Ruby House
+                            </div>
+                            <div class="house-badge sapphire-badge">
+                                <div class="house-badge-dot"></div>
+                                Sapphire House
+                            </div>
+                            <div class="house-badge emerald-badge">
+                                <div class="house-badge-dot"></div>
+                                Emerald House
+                            </div>
+                            <div class="house-badge topaz-badge">
+                                <div class="house-badge-dot"></div>
+                                Topaz House
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="color: #94a3b8; margin-top: 2rem; font-size: 1.1rem;">
+                <i class="fas fa-map-marker-alt" style="color: var(--accent-color); margin-right: 10px;"></i>
+                Aravali International School Sector-85, Faridabad | December 20, 2025
+            </p>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="section highlights-section" id="highlights">
+        <div class="container">
+            <div class="section-header">
+                <h2>Event Highlights</h2>
+            </div>
+            <div class="highlights-container">
+                <div class="highlight-card">
+                    <i class="fas fa-star"></i>
+                    <h3>Sports Event of the Day</h3>
+                    <div class="value">4x100m Relay</div>
+                    <div class="description">Most anticipated event with record-breaking performances</div>
+                </div>
+
+                <div class="highlight-card">
+                    <i class="fas fa-music"></i>
+                    <h3>Cultural Highlight</h3>
+                    <div class="value">Folk Dance</div>
+                    <div class="description">Traditional dance performances with vibrant costumes</div>
+                </div>
+
+                <div class="highlight-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Total Participation</h3>
+                    <div class="value">4 Houses</div>
+                    <div class="description">All houses competing with exceptional spirit</div>
+                </div>
+
+                <div class="highlight-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Total Events</h3>
+                    <div class="value">8</div>
+                    <div class="description">Sports & Cultural events in progress</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section class="section events-section" id="events">
+        <div class="container">
+            <div class="section-header">
+                <h2>Sports & Cultural Events</h2>
+            </div>
+
+            <!-- Sports Spirit Events -->
+            <div class="spirit-category sports-spirit">
+                <div class="category-header">
+                    <h3>Sports Spirit</h3>
+                </div>
+                <div class="events-container">
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h3>100m Race</h3>
+                        <p>Track Event</p>
+                        <p>Fastest athletes competition</p>
+                        <p>Main Track Stadium</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3>200m Race</h3>
+                        <p>Track Event</p>
+                        <p>Speed & endurance test</p>
+                        <p>Main Track Stadium</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fas fa-road"></i>
+                        </div>
+                        <h3>400m Race</h3>
+                        <p>Track Event</p>
+                        <p>One lap full sprint</p>
+                        <p>Main Track Stadium</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fas fa-weight-hanging"></i>
+                        </div>
+                        <h3>Shot Put</h3>
+                        <p>Field Event</p>
+                        <p>Strength & technique</p>
+                        <p>Field Arena 1</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fas fa-compact-disc"></i>
+                        </div>
+                        <h3>Discus</h3>
+                        <p>Field Event</p>
+                        <p>Power & precision throw</p>
+                        <p>Field Arena 2</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cultural Spirit Events -->
+            <div class="spirit-category cultural-spirit">
+                <div class="category-header">
+                    <h3>Cultural Spirit</h3>
+                </div>
+                <div class="events-container">
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <h3>Music</h3>
+                        <p>Vocal & Instrumental</p>
+                        <p>Classical & contemporary performances</p>
+                        <p>Cultural Hall</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fas fa-dragon"></i>
+                        </div>
+                        <h3>Dance</h3>
+                        <p>Group & Solo</p>
+                        <p>Traditional & fusion dance forms</p>
+                        <p>Main Auditorium</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Arts</h3>
+                        <p>Visual Arts</p>
+                        <p>Painting, sculpture & crafts exhibition</p>
+                        <p>Art Gallery</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Houses Section -->
+    <section class="section houses-section" id="houses">
+        <div class="container">
+            <div class="section-header">
+                <h2>School Houses</h2>
+            </div>
+            <div class="houses-container">
+                <div class="houses-card">
+                    <h3>Competing Houses</h3>
+                    <div class="house-item ruby-house">
+                        <div class="house-color"></div>
+                        <div class="house-name">Ruby House</div>
+                    </div>
+                    <div class="house-item sapphire-house">
+                        <div class="house-color"></div>
+                        <div class="house-name">Sapphire House</div>
+                    </div>
+                    <div class="house-item emerald-house">
+                        <div class="house-color"></div>
+                        <div class="house-name">Emerald House</div>
+                    </div>
+                    <div class="house-item topaz-house">
+                        <div class="house-color"></div>
+                        <div class="house-name">Topaz House</div>
+                    </div>
+                </div>
+
+                <div class="houses-card">
+                    <h3>House Motto</h3>
+                    <div class="house-item ruby-house">
+                        <div class="house-color"></div>
+                        <div class="house-name">Ruby House: "Strength & Passion"</div>
+                    </div>
+                    <div class="house-item sapphire-house">
+                        <div class="house-color"></div>
+                        <div class="house-name">Sapphire House: "Wisdom & Excellence"</div>
+                    </div>
+                    <div class="house-item emerald-house">
+                        <div class="house-color"></div>
+                        <div class="house-name">Emerald House: "Growth & Harmony"</div>
+                    </div>
+                    <div class="house-item topaz-house">
+                        <div class="house-color"></div>
+                        <div class="house-name">Topaz House: "Energy & Leadership"</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Space Travel Gallery Section -->
+    <section class="section gallery-section" id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2>SPACE TRAVEL GALLERY</h2>
+            </div>
+
+            <div class="gallery-container">
+                <button class="space-travel-btn" id="spaceTravelBtn">
+                    <i class="fas fa-rocket"></i>
+                    START SPACE TRAVEL
+                </button>
+
+                <div class="main-gallery-image" id="mainGalleryImage">
+                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Aravali Sports Day Celebration" id="currentImage">
+                </div>
+
+                <div class="image-title" id="image-title">Aravali Sports Day Celebration - 25th Anniversary</div>
+
+                <div class="gallery-thumbnails" id="galleryThumbnails">
+                    <!-- Thumbnails will be added by JavaScript -->
+                </div>
+
+                <div class="gallery-instructions">
+                    <p><i class="fas fa-info-circle" style="color: var(--accent-color); margin-right: 8px;"></i>
+                    Double click the main image or use the START SPACE TRAVEL button for an immersive space travel experience through all gallery images!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Space Travel Animation Overlay -->
+    <div class="space-travel-animation" id="spaceTravelAnimation">
+        <div class="stars"></div>
+        <button class="exit-travel-btn" id="exitTravelBtn">
+            <i class="fas fa-times"></i>
+            EXIT SPACE TRAVEL
+        </button>
+        <div class="travel-progress">
+            <div class="travel-progress-bar" id="travelProgressBar"></div>
+        </div>
+        <!-- Travel images will be added dynamically by JavaScript -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-placeholder" style="width: 60px; height: 60px;">
+                            <img src="IMG-20251204-WA0002-removebg-preview.png" alt="Aravali International School" style="width: 100%; height: 100%; object-fit: contain; border-radius: 50%;">
+                        </div>
+                        <div class="footer-logo-text">
+                            <h3>ARAVALI INTERNATIONAL SCHOOL</h3>
+                            <p>IGNITE Sports & Cultural Day 2025</p>
+                        </div>
+                    </div>
+                    <p style="color: #cbd5e1; line-height: 1.8;">Aravali International School, established in 2000, is committed to holistic education and excellence in both sports and culture.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#highlights">Highlights</a></li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="#houses">Houses</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact Information</h4>
+                    <p><i class="fas fa-map-marker-alt" style="color: var(--accent-color);"></i> Aravali International School, Sector-85, Faridabad</p>
+                    <p><i class="fas fa-phone" style="color: var(--accent-color);"></i> +91 124 567 8901</p>
+                    <p><i class="fas fa-envelope" style="color: var(--accent-color);"></i> sportsday@aravalischool.edu.in</p>
+                    <p><i class="far fa-calendar-alt" style="color: var(--accent-color);"></i> December 20, 2025</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Aravali International School IGNITE Sports & Cultural Day. All Rights Reserved.</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">Celebrating 25 Years of Excellence in Education, Sports & Culture</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ============================================
+        // SIMPLIFIED GUARANTEED MUSIC PLAYER
+        // ============================================
+
+        // DOM Elements for music
+        const backgroundMusic = document.getElementById('background-music');
+        const musicToggleBtn = document.getElementById('musicToggleBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const musicStatus = document.getElementById('musicStatus');
+        const spaceAudio = document.getElementById('space-audio');
+
+        // State variables
+        let isMusicPlaying = false;
+        let audioContextInitialized = false;
+
+        // Initialize music on page load
+        function initializeMusic() {
+            console.log("Initializing music player...");
+            
+            // Configure audio settings
+            backgroundMusic.volume = 0.7; // Default volume
+            backgroundMusic.loop = true; // Loop for 5 hours
+            backgroundMusic.currentTime = 0; // Start from beginning
+            
+            spaceAudio.volume = 0.7;
+            spaceAudio.loop = true;
+            spaceAudio.currentTime = 16;
+            
+            // Setup event listeners
+            setupMusicListeners();
+            
+            // Show initial instruction
+            showMusicStatus("Click the play button to start music", "info");
+            
+            // Listen for ANY user interaction
+            document.addEventListener('click', handleFirstInteraction);
+            document.addEventListener('touchstart', handleFirstInteraction);
+            document.addEventListener('keydown', handleFirstInteraction);
+        }
+
+        // Handle first user interaction
+        function handleFirstInteraction() {
+            console.log("User interacted with page");
+            audioContextInitialized = true;
+            
+            // Remove event listeners
+            document.removeEventListener('click', handleFirstInteraction);
+            document.removeEventListener('touchstart', handleFirstInteraction);
+            document.removeEventListener('keydown', handleFirstInteraction);
+            
+            // Try to auto-play
+            tryAutoPlay();
+        }
+
+        // Try to auto-play music
+        function tryAutoPlay() {
+            if (!audioContextInitialized) return;
+            
+            backgroundMusic.play().then(() => {
+                console.log("Music auto-played successfully");
+                isMusicPlaying = true;
+                updateMusicButton();
+                showMusicStatus("Music started!", "success");
+            }).catch(error => {
+                console.log("Auto-play failed (normal):", error.message);
+                showMusicStatus("Click play button to start music", "info");
+            });
+        }
+
+        // Setup music event listeners
+        function setupMusicListeners() {
+            // Play/Pause button
+            musicToggleBtn.addEventListener('click', toggleMusic);
+            
+            // Volume control
+            volumeSlider.addEventListener('input', (e) => {
+                const volume = parseFloat(e.target.value);
+                backgroundMusic.volume = volume;
+                spaceAudio.volume = volume;
+                updateVolumeIcon();
+            });
+            
+            // Audio error handling
+            backgroundMusic.addEventListener('error', (e) => {
+                console.error("Audio error:", e);
+                showMusicStatus("Error: Could not load music file", "error");
+            });
+            
+            backgroundMusic.addEventListener('canplaythrough', () => {
+                console.log("Audio is ready to play");
+                showMusicStatus("Music loaded and ready", "info");
+            });
+        }
+
+        // Toggle music play/pause
+        function toggleMusic() {
+            if (!audioContextInitialized) {
+                audioContextInitialized = true;
+                showMusicStatus("Starting music...", "info");
+            }
+            
+            if (isMusicPlaying) {
+                pauseMusic();
+            } else {
+                playMusic();
+            }
+        }
+
+        // Play music function
+        function playMusic() {
+            // Ensure we're at the beginning
+            backgroundMusic.currentTime = 0;
+            
+            const playPromise = backgroundMusic.play();
+            
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    isMusicPlaying = true;
+                    updateMusicButton();
+                    console.log("Music started successfully");
+                    showMusicStatus("Music playing", "success");
+                }).catch(error => {
+                    console.error("Play failed:", error);
+                    
+                    // Try alternative approach
+                    if (error.name === 'NotAllowedError') {
+                        showMusicStatus("Click anywhere on page, then play button", "error");
+                    } else if (error.name === 'NotSupportedError') {
+                        showMusicStatus("Browser doesn't support this audio format", "error");
+                    } else {
+                        showMusicStatus("Could not play audio", "error");
+                    }
+                    
+                    // Try one more time with a delay
+                    setTimeout(() => {
+                        backgroundMusic.play().then(() => {
+                            isMusicPlaying = true;
+                            updateMusicButton();
+                            showMusicStatus("Music started!", "success");
+                        }).catch(e => {
+                            console.error("Second attempt failed:", e);
+                        });
+                    }, 1000);
+                });
+            }
+        }
+
+        // Pause music
+        function pauseMusic() {
+            backgroundMusic.pause();
+            isMusicPlaying = false;
+            updateMusicButton();
+            showMusicStatus("Music paused", "info");
+        }
+
+        // Update music button appearance
+        function updateMusicButton() {
+            const icon = musicToggleBtn.querySelector('i');
+            
+            if (isMusicPlaying) {
+                musicToggleBtn.classList.add('playing');
+                icon.className = 'fas fa-pause';
+            } else {
+                musicToggleBtn.classList.remove('playing');
+                icon.className = 'fas fa-play';
+            }
+            
+            updateVolumeIcon();
+        }
+
+        // Update volume icon
+        function updateVolumeIcon() {
+            const volume = backgroundMusic.volume;
+            const volumeIcons = document.querySelectorAll('.volume-control i');
+            
+            if (volume === 0) {
+                volumeIcons[0].className = 'fas fa-volume-mute';
+                volumeIcons[1].className = 'fas fa-volume-mute';
+            } else if (volume < 0.5) {
+                volumeIcons[0].className = 'fas fa-volume-down';
+                volumeIcons[1].className = 'fas fa-volume-down';
+            } else {
+                volumeIcons[0].className = 'fas fa-volume-up';
+                volumeIcons[1].className = 'fas fa-volume-up';
+            }
+        }
+
+        // Show music status message
+        function showMusicStatus(message, type) {
+            musicStatus.textContent = message;
+            musicStatus.className = 'music-status';
+            musicStatus.classList.add(type);
+            musicStatus.style.display = 'block';
+            
+            // Hide after 5 seconds
+            setTimeout(() => {
+                musicStatus.style.display = 'none';
+            }, 5000);
+        }
+
+        // Space travel audio functions
+        function startSpaceTravelAudio() {
+            if (audioContextInitialized) {
+                spaceAudio.currentTime = 16;
+                spaceAudio.play().catch(error => {
+                    console.log("Space audio play failed:", error);
+                });
+            }
+        }
+
+        function stopSpaceTravelAudio() {
+            spaceAudio.pause();
+            spaceAudio.currentTime = 16;
+        }
+
+        // ============================================
+        // GALLERY AND WEBSITE FUNCTIONALITY
+        // ============================================
+
+        // Gallery Images Data
+        const galleryImages = [
+            {
+                id: 0,
+                url: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                title: "Aravali Sports Day Celebration - 25th Anniversary",
+                alt: "Main sports day celebration"
+            },
+            {
+                id: 1,
+                url: "https://images.unsplash.com/photo-1549060279-7e168fce7090?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                title: "100m Race - Track Event Finals",
+                alt: "100m race track event"
+            },
+            {
+                id: 2,
+                url: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                title: "Music Performance - Vocal & Instrumental",
+                alt: "Music performance"
+            },
+            {
+                id: 3,
+                url: "https://images.unsplash.com/photo-1599058917212-d750089bc07e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+                title: "400m Race - One Lap Sprint Finals",
+                alt: "400m race"
+            },
+            {
+                id: 4,
+                url: "https://images.unsplash.com/photo-1547153760-18fc86324498?ixlib=rb-4.0.3&auto=format&fit=crop&w=2071&q=80",
+                title: "Dance Performance - Traditional & Contemporary",
+                alt: "Dance performance"
+            },
+            {
+                id: 5,
+                url: "https://images.unsplash.com/photo-1598974357801-cbca100e5d10?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                title: "Shot Put - Strength & Technique Competition",
+                alt: "Shot put event"
+            },
+            {
+                id: 6,
+                url: "https://images.unsplash.com/photo-1544919982-b61976a0d7ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80",
+                title: "Arts Exhibition - Visual Arts Display",
+                alt: "Arts exhibition"
+            },
+            {
+                id: 7,
+                url: "https://images.unsplash.com/photo-1552674605-db6ffd8facb5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                title: "200m Race - Speed & Endurance Finals",
+                alt: "200m race"
+            },
+            {
+                id: 8,
+                url: "https://images.unsplash.com/photo-1530549387789-4c1017266635?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80",
+                title: "Discus Throw - Power & Precision Event",
+                alt: "Discus throw"
+            }
+        ];
+
+        // Initialize variables
+        let currentImageIndex = 0;
+        let isSpaceTravelActive = false;
+
+        // DOM Elements
+        const currentImage = document.getElementById('currentImage');
+        const imageTitle = document.getElementById('image-title');
+        const mainGalleryImage = document.getElementById('mainGalleryImage');
+        const galleryThumbnails = document.getElementById('galleryThumbnails');
+        const spaceTravelBtn = document.getElementById('spaceTravelBtn');
+        const spaceTravelAnimation = document.getElementById('spaceTravelAnimation');
+        const exitTravelBtn = document.getElementById('exitTravelBtn');
+        const travelProgressBar = document.getElementById('travelProgressBar');
+        const currentTimeElement = document.getElementById('currentTime');
+
+        // Initialize gallery
+        function initGallery() {
+            updateCurrentImage(currentImageIndex);
+            createThumbnails();
+            startTimeUpdate();
+            animateHouseBadges();
+            setupEventListeners();
+        }
+
+        // Update current image display
+        function updateCurrentImage(index) {
+            const image = galleryImages[index];
+            currentImage.src = image.url;
+            currentImage.alt = image.alt;
+            imageTitle.textContent = image.title;
+            
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+                if (parseInt(thumb.dataset.index) === index) {
+                    thumb.classList.add('active');
+                }
+            });
+            
+            currentImageIndex = index;
+        }
+
+        // Create thumbnail images
+        function createThumbnails() {
+            galleryThumbnails.innerHTML = '';
+            
+            galleryImages.forEach((image, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = `thumbnail ${index === currentImageIndex ? 'active' : ''}`;
+                thumbnail.dataset.index = index;
+                
+                const img = document.createElement('img');
+                img.src = image.url;
+                img.alt = image.alt;
+                
+                thumbnail.appendChild(img);
+                thumbnail.addEventListener('click', () => updateCurrentImage(index));
+                
+                galleryThumbnails.appendChild(thumbnail);
+            });
+        }
+
+        // Update current time
+        function updateCurrentTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            };
+            
+            const timeString = now.toLocaleDateString('en-US', options);
+            currentTimeElement.textContent = timeString;
+        }
+
+        // Start time update interval
+        function startTimeUpdate() {
+            updateCurrentTime();
+            setInterval(updateCurrentTime, 1000);
+        }
+
+        // Animate house badges on load
+        function animateHouseBadges() {
+            document.querySelectorAll('.house-badge').forEach((badge, index) => {
+                setTimeout(() => {
+                    badge.style.transform = 'translateY(0)';
+                    badge.style.opacity = '1';
+                }, 1000 + (index * 200));
+                
+                badge.style.transform = 'translateY(20px)';
+                badge.style.opacity = '0';
+                badge.style.transition = 'all 0.5s ease';
+            });
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Space travel
+            mainGalleryImage.addEventListener('dblclick', startSpaceTravel);
+            spaceTravelBtn.addEventListener('click', startSpaceTravel);
+            exitTravelBtn.addEventListener('click', exitSpaceTravel);
+
+            // Keyboard navigation
+            document.addEventListener('keydown', handleKeyPress);
+
+            // Smooth scrolling
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', smoothScroll);
+            });
+
+            // Parallax effect
+            window.addEventListener('scroll', updateParallax);
+
+            // Hover effects
+            setupHoverEffects();
+        }
+
+        // Space Travel Animation
+        function startSpaceTravel() {
+            if (isSpaceTravelActive) return;
+            
+            isSpaceTravelActive = true;
+            spaceTravelAnimation.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            // Start space travel audio
+            startSpaceTravelAudio();
+            
+            // Clear any existing travel images
+            const existingImages = document.querySelectorAll('.travel-image');
+            existingImages.forEach(img => img.remove());
+            
+            // Start with the first image splitting and zooming
+            createSplitAndZoomAnimation();
+            
+            // Then start the space travel sequence
+            setTimeout(() => {
+                startTravelSequence();
+            }, 3500);
+        }
+
+        function createSplitAndZoomAnimation() {
+            const image = galleryImages[0];
+            const numPieces = 8;
+            
+            for (let i = 0; i < numPieces; i++) {
+                const travelImage = document.createElement('div');
+                travelImage.className = 'travel-image split';
+                travelImage.style.left = `${Math.random() * 80 + 10}%`;
+                travelImage.style.top = `${Math.random() * 80 + 10}%`;
+                travelImage.style.animationDelay = `${i * 0.1}s`;
+                travelImage.style.zIndex = '1000';
+                
+                const img = document.createElement('img');
+                img.src = image.url;
+                img.alt = image.alt;
+                
+                travelImage.appendChild(img);
+                spaceTravelAnimation.appendChild(travelImage);
+                
+                setTimeout(() => {
+                    if (travelImage.parentNode) {
+                        travelImage.remove();
+                    }
+                }, 3000 + (i * 100));
+            }
+            
+            travelProgressBar.style.width = '10%';
+        }
+
+        function startTravelSequence() {
+            let imageIndex = 0;
+            const totalImages = galleryImages.length;
+            const travelDuration = 4000;
+            
+            function showNextImage() {
+                if (imageIndex >= totalImages || !isSpaceTravelActive) {
+                    setTimeout(() => {
+                        if (isSpaceTravelActive) {
+                            endSpaceTravel();
+                        }
+                    }, 2000);
+                    return;
+                }
+                
+                const progress = ((imageIndex + 1) / totalImages) * 100;
+                travelProgressBar.style.width = `${progress}%`;
+                
+                const image = galleryImages[imageIndex];
+                const travelImage = document.createElement('div');
+                travelImage.className = `travel-image ${imageIndex % 2 === 0 ? 'approach-left' : 'approach-right'}`;
+                travelImage.style.left = `${Math.random() * 60 + 20}%`;
+                travelImage.style.top = `${Math.random() * 60 + 20}%`;
+                
+                const img = document.createElement('img');
+                img.src = image.url;
+                img.alt = image.alt;
+                
+                travelImage.appendChild(img);
+                spaceTravelAnimation.appendChild(travelImage);
+                
+                setTimeout(() => {
+                    if (travelImage.parentNode) {
+                        travelImage.remove();
+                    }
+                }, travelDuration + 1000);
+                
+                imageIndex++;
+                
+                setTimeout(() => {
+                    showNextImage();
+                }, travelDuration - 1000);
+            }
+            
+            showNextImage();
+        }
+
+        function endSpaceTravel() {
+            const finalImage = document.createElement('div');
+            finalImage.className = 'travel-image split';
+            finalImage.style.left = '50%';
+            finalImage.style.top = '50%';
+            finalImage.style.transform = 'translate(-50%, -50%)';
+            finalImage.style.animation = 'splitAndZoom 3s reverse forwards';
+            finalImage.style.zIndex = '1001';
+            
+            const img = document.createElement('img');
+            img.src = galleryImages[galleryImages.length - 1].url;
+            img.alt = galleryImages[galleryImages.length - 1].alt;
+            
+            finalImage.appendChild(img);
+            spaceTravelAnimation.appendChild(finalImage);
+            
+            setTimeout(() => {
+                exitSpaceTravel();
+            }, 3000);
+        }
+
+        function exitSpaceTravel() {
+            isSpaceTravelActive = false;
+            spaceTravelAnimation.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            travelProgressBar.style.width = '0%';
+            
+            stopSpaceTravelAudio();
+            
+            const travelImages = document.querySelectorAll('.travel-image');
+            travelImages.forEach(img => {
+                if (img.parentNode) {
+                    img.remove();
+                }
+            });
+        }
+
+        // Handle keyboard navigation
+        function handleKeyPress(e) {
+            if (isSpaceTravelActive && e.key === 'Escape') {
+                exitSpaceTravel();
+                return;
+            }
+            
+            if (!isSpaceTravelActive) {
+                switch(e.key) {
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+                        updateCurrentImage(currentImageIndex);
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                        updateCurrentImage(currentImageIndex);
+                        break;
+                    case ' ':
+                    case 'Enter':
+                        e.preventDefault();
+                        startSpaceTravel();
+                        break;
+                    case 'm':
+                    case 'M':
+                        e.preventDefault();
+                        toggleMusic();
+                        break;
+                }
+            }
+        }
+
+        // Smooth scrolling
+        function smoothScroll(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Update parallax effect
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero-section');
+            if (hero) {
+                hero.style.backgroundPositionY = scrolled * 0.5 + 'px';
+            }
+        }
+
+        // Setup hover effects
+        function setupHoverEffects() {
+            document.querySelectorAll('.highlight-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-15px) rotateX(5deg) rotateY(5deg)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+                });
+            });
+
+            document.querySelectorAll('.house-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(10px) scale(1.05)';
+                });
+
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0) scale(1)';
+                });
+            });
+        }
+
+        // ============================================
+        // INITIALIZE EVERYTHING
+        // ============================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize music first
+            initializeMusic();
+            
+            // Initialize gallery and website
+            initGallery();
+            
+            console.log("Website fully loaded and ready!");
+            console.log("Music Instructions: Click anywhere on page, then click music button");
+        });
+
+        // ============================================
+        // IMPORTANT: REPLACE YOUR MUSIC FILE URL
+        // ============================================
+        // In the HTML (around line 95), find this line:
+        // <source src="YOUR_MUSIC_FILE_URL_HERE.mp3" type="audio/mpeg">
+        //
+        // REPLACE "YOUR_MUSIC_FILE_URL_HERE.mp3" with your ACTUAL music file URL
+        //
+        // Example: <source src="https://your-server.com/music/5-hour-epic-music.mp3" type="audio/mpeg">
+        //
+        // TROUBLESHOOTING:
+        // 1. Test your music URL directly in a browser - it should play
+        // 2. Make sure it's an MP3 file
+        // 3. Make sure the URL is publicly accessible
+        // 4. If using a local file, upload it to a server first
+    </script>
+</body>
+</html>
